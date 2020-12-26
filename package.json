@@ -10,10 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
+    "multiparty": "^4.2.2",
     "mysql": "^2.16.0",
     "nodemon": "^2.0.6"
   }

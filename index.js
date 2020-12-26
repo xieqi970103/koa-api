@@ -11,7 +11,7 @@ app.use(bodyParser())
 
 // 引入user.js
 const users = require('./routes/api/user.js')
-
+const img = require('./routes/api/img.js')
 // 路由
 router.get("/", async ctx =>{
     let data = await mysql.query()
@@ -24,6 +24,7 @@ router.get("/", async ctx =>{
 
 // 配置路由地址
 router.use("/api/user", users)
+router.use("/api/img", img)
 
 // 配置路由
 app.use(router.routes()).use(router.allowedMethods());

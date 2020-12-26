@@ -2,23 +2,25 @@ const Router = require('koa-router')
 const router = new Router();
 const mysql = require('../../mysql')
 const jwt = require('jsonwebtoken')
-
+const multiparty = require("multiparty");
+const formidable = require("formidable");
+const bluebird = require("bluebird");
 // test
 router.get('/test', async ctx => {
     ctx.status = 200;
-    let data = await mysql.query()
-    ctx.body = {
-        "resCode": 0,
-        "data": data,
-        "mesg": 'ok'
-    }
+    // let data = await mysql.query()
+    // ctx.body = {
+    //     "resCode": 0,
+    //     "data": data,
+    //     "mesg": 'ok'
+    // }
 })
 
 /**
  * 登录
  */
 router.post('/login', async ctx => {
-    // console.log(ctx.request.body)value
+    console.log(ctx.request.body)
     const paramete = ctx.request.body
     let value = await mysql.query(paramete)
     ctx.status = 200;
@@ -59,6 +61,26 @@ router.post('/login', async ctx => {
                 "mesg": '账户或密码错误！！'
             }
         }
+    }
+})
+/**
+ * 获取上传图片
+ */
+router.post('/upImg', async (ctx, next) => {
+    var form = new formidable.IncomingForm();
+
+    // bluebird.promisify(form.parse);
+
+    form.parse(ctx.req,function(err,fields){
+        if(err){throw err; return;}
+        console.log(fields);//{ name: base64字符串 }
+        // ctx.body = fields.name
+    });
+    console.log('res', ctx.res.body)
+    ctx.body = {
+        "resCode": 0,
+        "data": {},
+        "mesg": '登录成功'
     }
 })
 
