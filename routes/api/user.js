@@ -8,18 +8,20 @@ const bluebird = require("bluebird");
 // test
 router.get('/test', async ctx => {
     ctx.status = 200;
+    console.log(123);
     // let data = await mysql.query()
-    // ctx.body = {
-    //     "resCode": 0,
-    //     "data": data,
-    //     "mesg": 'ok'
-    // }
+    ctx.body = {
+        "resCodes": 0,
+        // "data": data,
+        "mesg": 'oks'
+    }
 })
 
 /**
  * 登录
  */
 router.post('/login', async ctx => {
+    // console.log(143);
     console.log(ctx.request.body)
     const paramete = ctx.request.body
     let value = await mysql.query(paramete)
